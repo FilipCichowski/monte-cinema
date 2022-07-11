@@ -1,0 +1,33 @@
+<div class="container">
+  <h1><span>Great!</span>Now your name</h1>
+  <div class="form">
+    <app-form-field
+      name="first name"
+      placeholder="e.g. Jessica"
+    ></app-form-field>
+    <app-form-field name="last name" placeholder="e.g. Walton"></app-form-field>
+    <app-form-field
+      name="date of birth"
+      placeholder="DD / MM / YYYY"
+    ></app-form-field>
+    <p class="age">You should be minimum 18 years old</p>
+    <div class="check">
+      <input type="checkbox" class="accept" name="isAccepted" />
+      <p>
+        I accept <span><a href="#">Privacy Policy</a></span>
+      </p>
+    </div>
+
+    <div class="buttons">
+      <app-non-action-button
+        style="flex: 1"
+        text="Log in instead"
+      ></app-non-action-button>
+      <app-action-button
+        style="flex: 1"
+        text="Register"
+        routerLink="/final"
+      ></app-action-button>
+    </div>
+  </div>
+</div>
