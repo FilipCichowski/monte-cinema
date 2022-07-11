@@ -9,13 +9,23 @@
       name="password"
       placeholder="Enter your password"
       [passwordButton]="true"
+      [ngModel]="password"
+      (ngModelChange)="validatePassword($event)"
+      ngDefaultControl
     ></app-form-field>
     <div class="password-properties">
       <p *ngFor="let e of passwordProps">{{ e.prop }}</p>
     </div>
     <div class="buttons">
-      <app-non-action-button style="flex: 1" text="Log in instead"></app-non-action-button>
-      <app-action-button style="flex: 1" text="Next step" routerLink="/register"></app-action-button>
+      <app-non-action-button
+        style="flex: 1"
+        text="Log in instead"
+      ></app-non-action-button>
+      <app-action-button
+        style="flex: 1"
+        text="Next step"
+        routerLink="/register"
+      ></app-action-button>
     </div>
   </div>
 </div>

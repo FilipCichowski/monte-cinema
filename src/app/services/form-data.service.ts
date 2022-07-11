@@ -6,7 +6,12 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class FormDataService {
-  loginData!: LoginData;
+  loginData: LoginData;
+
+  getLoginData(): LoginData {
+    return this.loginData;
+  }
+
   constructor() {
     this.loginData = new LoginData();
   }
