@@ -1,0 +1,21 @@
+@import "../../shared/variables.scss";
+
+button {
+  height: 56px;
+  border: none;
+  border-radius: 64px;
+  background-color: $red;
+  font-family: 'Roboto Mono';
+  font-size: 1.1rem;
+  color: white;
+  width: 100%;
+  transition: background-color 0.3s ease-out 0.2s;
+  cursor: pointer;
+  &:hover {
+    background-color: $dark-red;
+  }
+  &:active {
+    background-color: $dark-red;
+    border: 3px $red;
+  }
+}

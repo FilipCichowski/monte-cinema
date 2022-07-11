@@ -1,0 +1,24 @@
+<div class="container">
+  <app-form-header
+    class="head"
+    text="Ahoy you! Care to register?"
+  ></app-form-header>
+  <div class="form">
+    <app-form-field
+      name="email"
+      placeholder="Something ending with monterail.com"
+    ></app-form-field>
+    <app-form-field
+      name="password"
+      placeholder="Enter your password"
+      [passwordButton]="true"
+    ></app-form-field>
+    <div class="password-properties">
+      <p *ngFor="let e of passwordProps">{{ e.prop }}</p>
+    </div>
+    <div class="buttons">
+      <app-non-action-button style="flex: 1" text="Log in instead"></app-non-action-button>
+      <app-action-button style="flex: 1" text="Next step"></app-action-button>
+    </div>
+  </div>
+</div>

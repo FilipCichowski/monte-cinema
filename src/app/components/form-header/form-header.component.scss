@@ -1,0 +1,17 @@
+@import "../../shared/variables.scss";
+
+h1 {
+  font-family: "Eczar";
+  margin-top: 124px;
+  margin-bottom: 40px;
+  font-size: 5rem;
+  color: $grey;
+  line-height: 100%;
+  &::first-line {
+    color: $dark-grey;
+  }
+  @media screen and (max-width: 600px) {
+    margin-top: 30px;
+    font-size: 2.5rem;
+  }
+}
