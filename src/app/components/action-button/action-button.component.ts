@@ -10,9 +10,8 @@ export class ACTIONBUTTONComponent implements OnInit {
   text: string = '';
   @Input()
   disable: boolean = true;
-  
-  constructor() {
-  }
+
+  constructor() {}
 
   ngOnInit(): void {}
 }

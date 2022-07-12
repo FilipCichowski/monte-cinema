@@ -1,7 +1,10 @@
 <p>{{ name }}</p>
 <div class="input-button">
-  <input type="text" placeholder="{{ placeholder }}" />
-  <button *ngIf="passwordButton">
-    <img src="{{iconPath}}" alt="eye icon"/>
+  <input
+    [type]="passwordButton ? (showPassword ? 'text' : 'password') : 'text'"
+    placeholder="{{ placeholder }}"
+  />
+  <button *ngIf="passwordButton" (click)="togglePasswordVisibility()">
+    <img src="{{ iconPath }}" alt="eye icon" />
   </button>
 </div>

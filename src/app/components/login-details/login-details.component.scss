@@ -14,7 +14,6 @@
   }
   padding: 0 40px;
   border-radius: 24px;
-  
 }
 
 .password-properties {
@@ -25,14 +24,22 @@
 
 p {
   line-height: 170%;
-  color: $dark-grey;
+  color: $grey;
+  font-family: "Roboto";
+}
+
+.email-invalid {
+  margin-top: 5px;
+  margin-bottom: -15px;
+  font-size: 0.9rem;
+  color: red;
 }
 
 .buttons {
   display: flex;
   justify-content: space-around;
   margin-bottom: 20px;
-  @media screen and (max-width: 600px){
+  @media screen and (max-width: 600px) {
     margin-top: 48px;
     flex-direction: column-reverse;
     gap: 16px;

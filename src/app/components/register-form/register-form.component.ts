@@ -1,3 +1,4 @@
+import { LoginDataService } from './../../services/login-data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,8 +11,18 @@ export class RegisterFormComponent implements OnInit {
   isBirthDateValid: boolean = false;
   isRegisterButtonDisabled: boolean = true;
   birthDate: string = '';
+  firstName: string = '';
+  lastName: string = '';
 
-  validateBirthDate($event: string): void {
+  setFirstName($event: string): void {
+    this.firstName = $event;
+  }
+
+  setLastName($event: string): void {
+    this.lastName = $event;
+  }
+
+  setBirthDate($event: string): void {
     this.birthDate = $event;
     this.isBirthDateValid = this.getAge(this.birthDate) >= 18;
   }
@@ -21,9 +32,8 @@ export class RegisterFormComponent implements OnInit {
   }
 
   getAge(dateString: string): number {
-    var dateArr = dateString.split('/');
     var today = new Date();
-    var birthDate = new Date(dateArr[1] + '/' + dateArr[0] + '/' + dateArr[2]);
+    var birthDate = new Date(dateString);
     var age: number = today.getFullYear() - birthDate.getFullYear();
     var m = today.getMonth() - birthDate.getMonth();
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
@@ -32,7 +42,11 @@ export class RegisterFormComponent implements OnInit {
     return age;
   }
 
-  constructor() {}
+  setNameInService(): void {
+    this.loginData.setName(this.firstName);
+  }
+
+  constructor(private loginData: LoginDataService) {}
 
   ngOnInit(): void {}
 }

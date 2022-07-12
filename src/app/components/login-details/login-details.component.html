@@ -3,14 +3,20 @@
   <div class="form">
     <app-form-field
       name="email"
+      [ngModel]="email"
+      (ngModelChange)="setEmail($event)"
+      ngDefaultControl
       placeholder="Something ending with monterail.com"
     ></app-form-field>
+    <p *ngIf="!isEmailValid() && email.length > 0" class="email-invalid">
+      Invalid e-mail
+    </p>
     <app-form-field
       name="password"
       placeholder="Enter your password"
       [passwordButton]="true"
       [ngModel]="password"
-      (ngModelChange)="validatePassword($event)"
+      (ngModelChange)="setPasswordAndProps($event)"
       ngDefaultControl
     ></app-form-field>
     <div class="password-properties">
@@ -29,7 +35,8 @@
         text="Log in instead"
       ></app-non-action-button>
       <app-action-button
-        [disable]="disableNextButton"
+        [disable]="!isEmailValid() || !isPasswordValid()"
+        (click)="setEmailInService()"
         style="flex: 1"
         text="Next step"
         routerLink="/register"

@@ -8,9 +8,8 @@ describe('NonActionButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NonActionButtonComponent ]
-    })
-    .compileComponents();
+      declarations: [NonActionButtonComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(NonActionButtonComponent);
     component = fixture.componentInstance;

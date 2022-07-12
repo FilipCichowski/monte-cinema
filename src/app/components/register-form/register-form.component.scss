@@ -23,9 +23,13 @@
 }
 
 p {
-  color: $dark-grey;
+  color: $grey;
   font-size: 0.9rem;
   font-family: "Roboto";
+}
+
+.policy {
+  color: $dark-grey;
 }
 
 .buttons {
@@ -60,18 +64,57 @@ h1 {
 
 .check {
   display: flex;
+  align-items: center;
   margin: 25px 0;
   gap: 8px;
+  & input {
+    height: 24px;
+  }
 }
 
 .accept {
   width: 24px;
 }
 
-.age {
+.sub-label {
   margin: 8px 0;
 }
 
 a {
   color: $dark-grey;
+}
+
+.date-label {
+  color: red;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  font-family: "Roboto mono";
+  margin-bottom: 12px;
+  margin-top: 24px;
+}
+
+.date-calendar {
+  font-family: "Roboto";
+  width: 100%;
+  height: 56px;
+  border-radius: 8px;
+  border: none;
+  background-color: $light-grey;
+  color: $grey;
+  text-transform: uppercase;
+  text-indent: 24px;
+  text-overflow: ellipsis;
+  transition: background-color 0.3s ease-out 0.2s;
+  &:hover {
+    background-color: $darker-grey;
+  }
+  &:active {
+    background: rgba(47, 128, 237, 0.1);
+  }
+}
+
+.sub-label-dynamic {
+  margin-top: 8px;
+  margin-bottom: -1rem;
+  color: $red;
 }

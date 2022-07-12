@@ -1,3 +1,4 @@
+import { LoginDataService } from './../../services/login-data.service';
 import { ValidationProp } from './../../models/validation-prop';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginDetailsComponent implements OnInit {
   password: string = '';
-  disableNextButton: boolean = true;
+  email: string = '';
   passwordProps: ValidationProp[] = [
     {
       prop: 'At least 8 characters',
@@ -24,23 +25,15 @@ export class LoginDetailsComponent implements OnInit {
     },
   ];
 
-  validatePassword($event: string): void {
+  setEmail($event: string): void {
+    this.email = $event;
+  }
+
+  setPasswordAndProps($event: string): void {
     this.password = $event;
     this.passwordProps[0].isRight = this.password.length >= 8;
     this.passwordProps[1].isRight = this.containsAnyLetter(this.password);
     this.passwordProps[2].isRight = this.containsAnyNumber(this.password);
-    this.enableButtonOnPassword();
-  }
-
-  enableButtonOnPassword(): void {
-    let shouldEnableButton: boolean = true;
-    for (let e of this.passwordProps) {
-      if (!e.isRight) {
-        shouldEnableButton = false;
-      }
-    }
-    this.disableNextButton = !shouldEnableButton;
-    console.log(this.disableNextButton);
   }
 
   containsAnyLetter(str: string): boolean {
@@ -51,7 +44,26 @@ export class LoginDetailsComponent implements OnInit {
     return /[0-9]/.test(str);
   }
 
-  constructor() {}
+  isEmailValid(): boolean {
+    let res = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    return res.test(this.email);
+  }
+
+  isPasswordValid(): boolean {
+    let isValid: boolean = true;
+    for (let e of this.passwordProps) {
+      if (!e.isRight) {
+        isValid = false;
+      }
+    }
+    return isValid;
+  }
+
+  setEmailInService(): void {
+    this.loginData.setEmail(this.email);
+  }
+
+  constructor(private loginData: LoginDataService) {}
 
   ngOnInit(): void {}
 }

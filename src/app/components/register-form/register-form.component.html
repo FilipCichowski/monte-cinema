@@ -4,24 +4,42 @@
     <app-form-field
       name="first name"
       placeholder="e.g. Jessica"
-    ></app-form-field>
-    <app-form-field name="last name" placeholder="e.g. Walton"></app-form-field>
-    <app-form-field
-      name="date of birth"
-      placeholder="DD / MM / YYYY"
-      [ngModel]="birthDate"
-      (ngModelChange)="validateBirthDate($event)"
+      [ngModel]="firstName"
+      (ngModelChange)="setFirstName($event)"
       ngDefaultControl
     ></app-form-field>
-    <p
-      class="age"
-      [ngStyle]="{
-        color:
-          birthDate.length > 0 ? (isBirthDateValid ? 'green' : 'red') : 'gray'
-      }"
-    >
-      You should be minimum 18 years old
+    <p class="sub-label-dynamic" *ngIf="firstName.length === 0">
+      Enter your name
     </p>
+    <app-form-field
+      name="last name"
+      placeholder="e.g. Walton"
+      [ngModel]="lastName"
+      (ngModelChange)="setLastName($event)"
+      ngDefaultControl
+    ></app-form-field>
+    <p class="sub-label-dynamic" *ngIf="lastName.length === 0">
+      Enter your last name
+    </p>
+    <div class="date-field">
+      <p class="date-label">Date of birth</p>
+      <input
+        type="date"
+        [ngModel]="birthDate"
+        (ngModelChange)="setBirthDate($event)"
+        class="date-calendar"
+      />
+      <p
+        class="sub-label"
+        [ngStyle]="{
+          color:
+            birthDate.length > 0 ? (isBirthDateValid ? 'green' : 'red') : 'gray'
+        }"
+      >
+        You should be minimum 18 years old
+      </p>
+    </div>
+
     <div class="check">
       <input
         type="checkbox"
@@ -30,7 +48,7 @@
         [ngModel]="isPolicyChecked"
         (ngModelChange)="setPolicy($event)"
       />
-      <p>
+      <p class="policy">
         I accept <span><a href="#">Privacy Policy</a></span>
       </p>
     </div>
@@ -41,7 +59,15 @@
         text="Log in instead"
       ></app-non-action-button>
       <app-action-button
-        [disable]="!(isPolicyChecked && isBirthDateValid)"
+        [disable]="
+          !(
+            isPolicyChecked &&
+            isBirthDateValid &&
+            firstName.length > 0 &&
+            lastName.length > 0
+          )
+        "
+        (click)="setNameInService()"
         style="flex: 1"
         text="Register"
         routerLink="/final"
