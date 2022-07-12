@@ -18,6 +18,9 @@
       [ngModel]="password"
       (ngModelChange)="setPasswordAndProps($event)"
       ngDefaultControl
+      [ngStyle]="{
+          'border': password.length > 0 ? (isPasswordValid ? 'green' : 'red') : 'gray'
+        }"
     ></app-form-field>
     <div class="password-properties">
       <p
