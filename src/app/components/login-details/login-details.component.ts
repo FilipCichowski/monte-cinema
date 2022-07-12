@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginDetailsComponent implements OnInit {
   password: string = '';
+  disableNextButton: boolean = true;
   passwordProps: ValidationProp[] = [
     {
       prop: 'At least 8 characters',
@@ -25,12 +26,23 @@ export class LoginDetailsComponent implements OnInit {
     },
   ];
 
-  validatePassword($event: string) {
+  validatePassword($event: string): void {
     this.password = $event;
     this.passwordProps[0].isRight = this.password.length >= 8;
     this.passwordProps[1].isRight = this.containsAnyLetter(this.password);
     this.passwordProps[2].isRight = this.containsAnyNumber(this.password);
-    console.log(this.passwordProps);
+    this.enableButtonOnPassword()
+  }
+
+  enableButtonOnPassword(): void {
+    let shouldEnableButton: boolean = true;
+    for(let e of this.passwordProps) {
+      if (!e.isRight) {
+        shouldEnableButton = false;
+      }
+    }
+    this.disableNextButton = !shouldEnableButton;
+    console.log(this.disableNextButton)
   }
 
   containsAnyLetter(str: string): boolean {

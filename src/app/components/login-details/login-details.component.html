@@ -14,7 +14,14 @@
       ngDefaultControl
     ></app-form-field>
     <div class="password-properties">
-      <p *ngFor="let e of passwordProps">{{ e.prop }}</p>
+      <p
+        *ngFor="let e of passwordProps"
+        [ngStyle]="{
+          color: password.length > 0 ? (e.isRight ? 'green' : 'red') : 'gray'
+        }"
+      >
+        {{ e.prop }}
+      </p>
     </div>
     <div class="buttons">
       <app-non-action-button
@@ -22,6 +29,7 @@
         text="Log in instead"
       ></app-non-action-button>
       <app-action-button
+        [disable]="disableNextButton"
         style="flex: 1"
         text="Next step"
         routerLink="/register"

@@ -1,1 +1,1 @@
-<button>{{text}}</button>
+<button [disabled]="disable" [ngStyle]="disable ?{'background-color': 'lightgrey', 'cursor': 'default'} : {}">{{text}}</button>
