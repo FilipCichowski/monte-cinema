@@ -1,5 +1,3 @@
-import { FormDataService } from './../../services/form-data.service';
-import { LoginData } from './../../models/login-data';
 import { ValidationProp } from './../../models/validation-prop';
 import { Component, OnInit } from '@angular/core';
 
@@ -31,18 +29,18 @@ export class LoginDetailsComponent implements OnInit {
     this.passwordProps[0].isRight = this.password.length >= 8;
     this.passwordProps[1].isRight = this.containsAnyLetter(this.password);
     this.passwordProps[2].isRight = this.containsAnyNumber(this.password);
-    this.enableButtonOnPassword()
+    this.enableButtonOnPassword();
   }
 
   enableButtonOnPassword(): void {
     let shouldEnableButton: boolean = true;
-    for(let e of this.passwordProps) {
+    for (let e of this.passwordProps) {
       if (!e.isRight) {
         shouldEnableButton = false;
       }
     }
     this.disableNextButton = !shouldEnableButton;
-    console.log(this.disableNextButton)
+    console.log(this.disableNextButton);
   }
 
   containsAnyLetter(str: string): boolean {

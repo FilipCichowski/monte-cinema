@@ -9,10 +9,27 @@
     <app-form-field
       name="date of birth"
       placeholder="DD / MM / YYYY"
+      [ngModel]="birthDate"
+      (ngModelChange)="validateBirthDate($event)"
+      ngDefaultControl
     ></app-form-field>
-    <p class="age">You should be minimum 18 years old</p>
+    <p
+      class="age"
+      [ngStyle]="{
+        color:
+          birthDate.length > 0 ? (isBirthDateValid ? 'green' : 'red') : 'gray'
+      }"
+    >
+      You should be minimum 18 years old
+    </p>
     <div class="check">
-      <input type="checkbox" class="accept" name="isAccepted" />
+      <input
+        type="checkbox"
+        class="accept"
+        name="isAccepted"
+        [ngModel]="isPolicyChecked"
+        (ngModelChange)="setPolicy($event)"
+      />
       <p>
         I accept <span><a href="#">Privacy Policy</a></span>
       </p>
@@ -24,6 +41,7 @@
         text="Log in instead"
       ></app-non-action-button>
       <app-action-button
+        [disable]="!(isPolicyChecked && isBirthDateValid)"
         style="flex: 1"
         text="Register"
         routerLink="/final"
